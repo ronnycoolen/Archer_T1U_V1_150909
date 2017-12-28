@@ -422,7 +422,7 @@ void rausb_fill_bulk_urb(void *urb,
 						 USB_COMPLETE_HANDLER complete_fn,
 						 void *context)
 {
-	usb_fill_bulk_urb(urb, dev, pipe, transfer_buffer, buffer_length, complete_fn, context);
+	usb_fill_bulk_urb(urb, dev, pipe, transfer_buffer, buffer_length, (usb_complete_t) complete_fn, context);
 
 }
 EXPORT_SYMBOL(rausb_fill_bulk_urb);

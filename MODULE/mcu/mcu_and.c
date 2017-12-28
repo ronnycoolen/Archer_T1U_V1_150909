@@ -286,7 +286,7 @@ NDIS_STATUS andes_usb_loadfw(RTMP_ADAPTER *ad)
 
 			/* U2M_PDMA length */
 			value=0x00;
-			RTUSBReadMACRegister(ad, 0x234, &value);
+			RTUSBReadMACRegister(ad, 0x234, (PUINT32) &value);
 			value |= ((sent_len << 16) & 0xFFFF);			
 
 			/* Set FCE DMA length */
@@ -329,7 +329,7 @@ NDIS_STATUS andes_usb_loadfw(RTMP_ADAPTER *ad)
 									 cap->CommandBulkOutAddr,
 									 fw_data,
 									 sent_len + sizeof(*tx_info) + USB_END_PADDING,
-									 usb_uploadfw_complete,
+									 (usb_complete_t) usb_uploadfw_complete,
 									 &load_fw_done,
 									 fw_dma);
 
@@ -453,7 +453,7 @@ NDIS_STATUS andes_usb_loadfw(RTMP_ADAPTER *ad)
 
 			/* U2M_PDMA length */
 			value=0x00;
-			RTUSBReadMACRegister(ad, 0x234, &value);
+			RTUSBReadMACRegister(ad, 0x234, (PUINT32) &value);
 			value |= ((sent_len << 16) & 0xFFFF);
 
 			/* Set FCE DMA length */
@@ -496,7 +496,7 @@ NDIS_STATUS andes_usb_loadfw(RTMP_ADAPTER *ad)
 									 cap->CommandBulkOutAddr,
 									 fw_data,
 									 sent_len + sizeof(*tx_info) + USB_END_PADDING,
-									 usb_uploadfw_complete,
+									 (usb_complete_t) usb_uploadfw_complete,
 									 &load_fw_done,
 									 fw_dma);
 
